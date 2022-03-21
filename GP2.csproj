@@ -11,8 +11,4 @@
     <None Remove="wwwroort\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
 </Project>
