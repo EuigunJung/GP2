@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -83,6 +84,90 @@ namespace GP2.Controllers
             return RedirectToAction("SignUp", new { currentTime2 = previous });
         }
 
-        public IActionResult NextDate(string )
+        public IActionResult NextDate(string CurrentDate)
+        {
+            //This removes the key-value pairs, date & time in session:
+            HttpContext.Session.Remove("date");
+            HttpContext.Session.Remove("time");
+            //This is the day formatting:
+            string[] dateformat = { "MM/dd/yyyy" };
+            DateTime currentTime3 = DateTime.ParseExact(CurrentDate, dateformat, new CultureInfo("en-US"), DateTimeStyles.None);
+            DateTime previousDate = currentTime3.AddDays(1);
+            string next = NextDate.ToString("MM/dd/yyyy");
+
+            ViewBag.CurrentDate = next;
+            return RedirectToAction("SignUp", new { currentTime3 = next });
+        }
+
+        [HttpGet]
+        public IActionResult Form(string currentDate, string time)
+        {
+            ViewBag.currentDate = currentDate;
+            ViewBag.AppTime = time;
+
+            if (HttpContext.Session.GetString("date") == null)
+            {
+                HttpContext.Session.SetString("date", currentDate);
+            }
+            else
+            {
+                ViewBag.currentDate = HttpContext.Session.GetString("date");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Form (AppointmentResponse r)
+        {
+            if (r.Date == null)
+            {
+                r.Date = HttpContext.Session.GetString("date");
+                
+                if (r.GroupName != "" && (r.GroupSize > 0 && r.GroupSize < 16) && r.Email !="")
+                {
+                    ModelState.Clear();
+                }
+            }
+            if (ModelState.IsValid)
+            {
+                appointment.Add(r);
+                appointment.SaveChanges();
+
+                //Clearing the values 
+                ViewBag.currentDate = "";
+                ViewBag.AppTime = "";
+
+                //This removes the key-value pairs, date & time in session:
+                HttpContext.Session.Remove("date");
+                HttpContext.Session.Remove("time");
+
+                return RedirectToAction("Index");
+
+            }
+            //When the modelstate is not valid;
+            ViewBag.currentDate = HttpContext.Session.GetString("date");
+            ViewBag.AppTime = r.Time;
+            r.Date = HttpContext.Session.GetString("date");
+            return View(r);
+        }
+
+        //Deleting the information from DB
+
+        public IActionResult Delete(int appId)
+        {
+            //Matching the DB with the id 
+            ViewBag.New = false;
+
+            var apt = appointment.Appoinements.Single(i => i.AppointmentId == appId);
+
+            ViewBag.currentDate = apt.Date;
+            ViewBag.AppTime = apt.Time;
+
+            HttpContext.Session.SetString("date", apt.Date);
+            HttpContext.Session.SetString("time", apt.Time);
+            return View("Form", apt);
+        }
+
+
     }
 }
