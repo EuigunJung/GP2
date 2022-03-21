@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace GP2.Models
 {
-    public partial class DatetimeType
+    public class DatetimeType
     {
-
+        [Key]
+        [Required]
+        public int DatetimeTypeId { get; set; }
+        public DateTime DatetimeTypeName { get; set; }
     }
 }
