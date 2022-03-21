@@ -11,7 +11,7 @@ namespace GP2.Controllers
     {
         private AppointmentContext appoinment { get; set; }
 
-        public HomeController(AppoinementContext_app)
+        public HomeController(AppointmentContext_app)
         {
             appoinment = _app;
         }
@@ -43,7 +43,7 @@ namespace GP2.Controllers
 
             ViewBag.Disable = false;
 
-            if (currentTime.AddDays(-1) < DateTime.Today)
+            if (currentTime1.AddDays(-1) < DateTime.Today)
             {
                 ViewBag.Disable = true;
             }
