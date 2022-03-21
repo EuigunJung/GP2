@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace GP2.Models
 {
-    public partial class Appointment
+    public class AppointmentResponse
     {
         [Key]
-        [Required]
+        [Required
         public long BookId { get; set; }
+
+        [Required(ErrorMessage = " Please enter a valid group name.")]
         public string Name { get; set; }
+
+        [Required(ErrorMessage = " Please enter a valid email address.")]
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
 
@@ -21,6 +25,6 @@ namespace GP2.Models
         public int Size { get; set; }
 
         [Required]
-        public DateTime DateTime { get; set; } 
+        public DateTime DateTime { get; set; }
     }
 }
