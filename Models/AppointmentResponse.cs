@@ -10,7 +10,7 @@ namespace GP2.Models
     {
         [Key]
         [Required]
-        public long BookId { get; set; }
+        public long AppointmentId { get; set; }
 
         [Required(ErrorMessage = " Please enter a valid group name.")]
         public string Name { get; set; }

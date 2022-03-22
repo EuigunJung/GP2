@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Sign Up";
+}
+
+@model GP2.Models.AppointmentResponse
+
+@* this loop allows to match up the taskid from the database and link it to the viewfile. When user wants to edit and delete it will direct to the right pages. *@
+
+<h1>Sign Up for a Tour!</h1>
+
+<div>
+    <form method="post">
+        <label>Name of Group:</label>
+        <input asp-for="Name" /><br /><br />
+
+        <label>Size of Group (1-15):</label>
+        <input asp-for="Size" /><br /><br />
+
+        <label> Email (example@example.com):</label>
+        <input asp-for="Email" /><br /><br />
+
+        <label>Phone Number (000-000-0000):</label>
+        <input asp-for="PhoneNumber" /><br /><br />
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
