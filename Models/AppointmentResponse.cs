@@ -24,9 +24,8 @@ namespace GP2.Models
         [MaxLength(15, ErrorMessage = "Do not enter more than 15")]
         public int Size { get; set; }
 
+        public string Date { get; set; }
+        public string Time { get; set; }
 
-        //Build Foreign Key Relationship
-        [Required(ErrorMessage = "Please enter a valid time")]
-        public string DateTime { get; set; }
     }
 }
