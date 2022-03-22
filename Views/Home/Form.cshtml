@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "My Tour Appointment";
+}
+
+@model GP2.Models.AppointmentResponse;
+
+<h1>@ViewData["Title"]</h1>
+<p>Fill out your tour!</p>
+
+<div>
+    <form method="post">
+        <label asp-for="Name">Name of Group:</label>
+        <input asp-for="Name" /><br /><br />
+
+        <label asp-for="Size">Size of Group (1-15):</label>
+        <input asp-for="Size" /><br /><br />
+
+        <label asp-for="Email"> Email (example@example.com):</label>
+        <input asp-for="Email" /><br /><br />
+
+        <label asp-for="PhoneNumber">Phone Number (000-000-0000):</label>
+        <input asp-for="PhoneNumber" /><br /><br />
+
+        <div asp-validation-summary="All"></div>
+        <button type="submit">Submit Appointment</button>
+    </form>
+</div>

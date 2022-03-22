@@ -25,6 +25,6 @@ namespace GP2.Models
         public int Size { get; set; }
 
         [Required]
-        public DateTime DateTime { get; set; }
+        public string DateTime { get; set; }
     }
 }
