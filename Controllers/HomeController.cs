@@ -12,9 +12,9 @@ namespace GP2.Controllers
     {
         private AppointmentContext appoinment { get; set; }
 
-        public HomeController(AppointmentContext_app)
+        public HomeController(AppointmentContext temp)
         {
-            appoinment = _app;
+            repo = temp;
         }
         public IActionResult Index()
         {
@@ -49,7 +49,7 @@ namespace GP2.Controllers
                 ViewBag.Disable = true;
             }
             // This gets a list of records based on the date from DB:
-            var record = appointment.Appointments.Where(i => i.Date == currentdate).ToList();
+            var record = repo.Appointments.Where(i => i.Date == currentdate).ToList();
             
             return View(record);
         }
@@ -61,7 +61,7 @@ namespace GP2.Controllers
             HttpContext.Session.Remove("time");
 
             //This gets a list of every record from DB:
-            var record = appointment.Appointments.OrderByDescending(i => i.Date).ToList();
+            var record = repo.Appointments.OrderByDescending(i => i.Date).ToList();
 
             return View(record);
         }
@@ -130,8 +130,8 @@ namespace GP2.Controllers
             }
             if (ModelState.IsValid)
             {
-                appointment.Add(r);
-                appointment.SaveChanges();
+                repo.Add(r);
+                repo.SaveChanges();
 
                 //Clearing the values 
                 ViewBag.currentDate = "";
@@ -153,12 +153,27 @@ namespace GP2.Controllers
 
         //Deleting the information from DB
 
-        public IActionResult Delete(int appId)
+        public IActionResult Delete(int aptid)
         {
             //Matching the DB with the id 
+            var apt = repo.Appoinements.Single(i => i.AppointmentId == aptid);
+
+            repo.Appointments.Remove(apt);
+            repo.SaveChanges();
+
+            var list = repo.Appointments.ToList();
+
+            return RedirectToAction("Appointments", list);
+        }
+
+        //Editing the Temple Appointments
+
+        [HttpGet]
+        public IActionResult Edit (int aptid)
+        {
             ViewBag.New = false;
 
-            var apt = appointment.Appoinements.Single(i => i.AppointmentId == appId);
+            var apt = repo.Appointments.Single(i => i.AppointmentId == aptid);
 
             ViewBag.currentDate = apt.Date;
             ViewBag.AppTime = apt.Time;
@@ -168,6 +183,40 @@ namespace GP2.Controllers
             return View("Form", apt);
         }
 
+        [HttpPost]
+        public IActionResult Edit(AppointmentResponse r)
+        {
+            if (r.Date == null || r.Time == null)
+            {
+                r.Date = HttpContext.Session.GetString("date");
+                r.Time = HttpContext.Session.GetString("time");
+            }
 
+            if (r.GroupName != "" && (r.GroupSize > 0 && r.GroupSize < 16) && r.Email != "")
+            {
+                ModelState.Clear();
+            }
+
+            if (ModelState.IsValid)
+            {
+                repo.Update(r);
+                repo.SaveChanges();
+
+                HttpContext.Session.SetString("date", apt.Date);
+                HttpContext.Session.SetString("time", apt.Time);
+
+                return RedirectToAction("Appointments");
+            }
+
+            ViewBag.New = false;
+
+            ViewBag.currentDate = HttpContext.Session.GetString("date");
+
+            ViewBag.AppTime = r.Time;
+
+            r.Date = HttpContext.Session.GetString("Date");
+
+            return View("From", r);
+        }
     }
 }
