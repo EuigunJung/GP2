@@ -9,7 +9,7 @@ namespace GP2.Models
     public class AppointmentResponse
     {
         [Key]
-        [Required
+        [Required]
         public long BookId { get; set; }
 
         [Required(ErrorMessage = " Please enter a valid group name.")]
