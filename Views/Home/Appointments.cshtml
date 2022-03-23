@@ -20,6 +20,7 @@
                 <th>Time</th>
             </tr>
         </thead>
+
         <tbody>
             @if (Model?.Count() != 0)
             {
@@ -31,7 +32,8 @@
                         <td>@i.Size</td>
                         <td>@i.Email</td>
                         <td>@i.PhoneNumber</td>
-                        @if (Int32.Parse(i.Time) < 13 )
+                        <td>@i.Time</td>
+                        @*@if (Int32.Parse(i.Time) < 13 )
                         {
                             if (Int32.Parse(i.Time) == 12)
                             {
@@ -45,9 +47,9 @@
                         else
                         {
                             <td>@((Int32.Parse(i.Time) - 12).ToString()) PM</td>
-                        }
-                        <td><a class = "btn btn-primary" asp-controller="Home" asp-action="Edit" asp-route-appointmentid="@i.AppointmentId">Edit</a></td>
-                        <td><a class = "btn btn-primary" asp-controller="Home" asp-action="Delete" asp-route-appointmentid="@i.AppointmentId">Delete</a></td>
+                        }*@
+                        <td><a class = "btn btn-primary" asp-controller="Home" asp-action="Edit" asp-route-aptid="@i.AppointmentId">Edit</a></td>
+                        <td><a class = "btn btn-primary" asp-controller="Home" asp-action="Delete" asp-route-aptid="@i.AppointmentId">Delete</a></td>
                     </tr>
                 }
             }
