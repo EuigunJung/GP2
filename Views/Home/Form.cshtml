@@ -10,7 +10,10 @@
 <div>
     <form method="post">
 
-
+        <label asp-for="Date">Date</label>
+        <input asp-for="Date" disabled value="@ViewBag.CurrentDate" /><br />
+        <label asp-for="Time">Time</label>
+        <input asp-for="Time" disabled value="@ViewBag.scheduledTime" /><br /><br />
 
         <label asp-for="Name">Name of Group:</label>
         <input asp-for="Name" /><br /><br />
@@ -26,10 +29,6 @@
 
         <div asp-validation-summary="All"></div>
 
-        <label asp-for="Date">Date</label>
-        <input asp-for="Date" disabled value="@ViewBag.CurrentDate" /><br />
-        <label asp-for="Time">Time</label>
-        <input asp-for="Time" disabled value="@ViewBag.scheduleTime" /><br />
 
         <button type="submit">Submit Appointment</button>
 
