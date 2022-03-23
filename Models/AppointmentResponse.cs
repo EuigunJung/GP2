@@ -23,7 +23,6 @@ namespace GP2.Models
         [Required]
         [MaxLength(15, ErrorMessage = "Do not enter more than 15")]
         public int Size { get; set; }
-
         public string Date { get; set; }
         public string Time { get; set; }
 

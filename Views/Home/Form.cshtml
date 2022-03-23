@@ -5,10 +5,15 @@
 @model GP2.Models.AppointmentResponse;
 
 <h1>@ViewData["Title"]</h1>
-<p>Fill out your tour!</p>
+<p>Fill out your temple tour!</p>
 
 <div>
     <form method="post">
+
+        <input type="hidden" asp-for="Date" disabled value="@ViewBag.currentDate" />
+        <input type="hidden" asp-for="Time" disabled value="@ViewBag.currentTime" />
+
+
         <label asp-for="Name">Name of Group:</label>
         <input asp-for="Name" /><br /><br />
 
@@ -23,5 +28,8 @@
 
         <div asp-validation-summary="All"></div>
         <button type="submit">Submit Appointment</button>
+
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <div asp-validation-summary = "All;"></div>
     </form>
 </div>

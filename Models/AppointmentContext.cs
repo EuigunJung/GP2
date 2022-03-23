@@ -11,7 +11,6 @@ namespace GP2.Models
         //Constructor
         public AppointmentContext(DbContextOptions<AppointmentContext> options) : base(options)
         {
-            //Leave blank for now
         }
 
         public DbSet<AppointmentResponse> Response { get; set; }
