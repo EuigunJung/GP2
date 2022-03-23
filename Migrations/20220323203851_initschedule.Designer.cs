@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GP2.Migrations
 {
     [DbContext(typeof(AppointmentContext))]
-    [Migration("20220323192353_initschedule")]
+    [Migration("20220323203851_initschedule")]
     partial class initschedule
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
