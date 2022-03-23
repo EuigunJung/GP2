@@ -125,7 +125,7 @@ namespace GP2.Controllers
             {
                 r.Date = HttpContext.Session.GetString("date");
                 
-                if (r.Name != "" && (r.Size > 0 && r.Size < 16) && r.Email !="")
+                if (r.Name != "" && (r.Size > 0 && r.Size <= 15) && r.Email !="")
                 {
                     ModelState.Clear();
                 }
@@ -194,7 +194,7 @@ namespace GP2.Controllers
                 r.Time = HttpContext.Session.GetString("time");
             }
 
-            if (r.Name != "" && (r.Size > 0 && r.Size < 16) && r.Email != "")
+            if (r.Name != "" && (r.Size > 0 && r.Size <= 15) && r.Email != "")
             {
                 ModelState.Clear();
             }

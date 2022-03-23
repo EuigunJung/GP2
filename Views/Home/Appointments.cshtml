@@ -21,36 +21,36 @@
 
         <tbody>
             @if (Model?.Count() != 0)
-            {
+             {
                 @foreach (var i in Model)
-                {
+                 {
                     <tr>
                         <td>@i.Date</td>
                         <td>@i.Name</td>
                         <td>@i.Size</td>
                         <td>@i.Email</td>
                         <td>@i.PhoneNumber</td>
-                        <td>@i.Time</td>
-                        @*@if (Int32.Parse(i.Time) < 13 )
+
+                @if (Int32.Parse(i.Time) < 13 )
+                    {
+                       if (Int32.Parse(i.Time) == 12)
                         {
-                            if (Int32.Parse(i.Time) == 12)
-                            {
                                 <td>@i.Time PM</td>
-                            }
-                            else
-                            {
-                                <td>@i.Time AM</td>
-                            }
                         }
                         else
                         {
-                            <td>@((Int32.Parse(i.Time) - 12).ToString()) PM</td>
-                        }*@
+                                <td>@i.Time AM</td>
+                    }
+                 }
+                 else
+                 {
+                      <td>@((Int32.Parse(i.Time) - 12).ToString()) PM</td>
+                    }
                         <td><a class = "btn btn-primary" asp-controller="Home" asp-action="Edit" asp-route-aptid="@i.AppointmentId">Edit</a></td>
                         <td><a class = "btn btn-primary" asp-controller="Home" asp-action="Delete" asp-route-aptid="@i.AppointmentId">Delete</a></td>
                     </tr>
                 }
-            }
+             }
 
 
         </tbody>
