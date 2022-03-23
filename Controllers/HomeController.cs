@@ -93,8 +93,8 @@ namespace GP2.Controllers
             //This is the day formatting:
             string[] dateformat = { "MM/dd/yyyy" };
             DateTime currentTime3 = DateTime.ParseExact(CurrentDate, dateformat, new CultureInfo("en-US"), DateTimeStyles.None);
-            DateTime previousDate = currentTime3.AddDays(1);
-            string next = NextDate.ToString("MM/dd/yyyy");
+            DateTime nextDate = currentTime3.AddDays(1);
+            string next = nextDate.ToString("MM/dd/yyyy");
 
             ViewBag.CurrentDate = next;
             return RedirectToAction("SignUp", new { currentTime3 = next });
@@ -203,8 +203,11 @@ namespace GP2.Controllers
                 repo.Update(r);
                 repo.SaveChanges();
 
-                HttpContext.Session.SetString("date", apt.Date);
-                HttpContext.Session.SetString("time", apt.Time);
+                ViewBag.currentDate = "";
+                ViewBag.AppTime = "";
+
+                HttpContext.Session.Remove("date");
+                HttpContext.Session.Remove("time");
 
                 return RedirectToAction("Appointments");
             }
@@ -215,7 +218,7 @@ namespace GP2.Controllers
 
             ViewBag.AppTime = r.Time;
 
-            r.Date = HttpContext.Session.GetString("Date");
+            r.Date = HttpContext.Session.GetString("date");
 
             return View("From", r);
         }
