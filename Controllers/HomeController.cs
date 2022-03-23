@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using GP2.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace GP2.Controllers
 {
     public class HomeController : Controller
     {
-        private AppointmentContext appoinment { get; set; }
+        private AppointmentContext repo { get; set; }
 
         public HomeController(AppointmentContext temp)
         {
@@ -49,7 +50,7 @@ namespace GP2.Controllers
                 ViewBag.Disable = true;
             }
             // This gets a list of records based on the date from DB:
-            var record = repo.Appointments.Where(i => i.Date == currentdate).ToList();
+            var record = repo.Response.Where(i => i.Date == currentdate).ToList();
             
             return View(record);
         }
@@ -61,7 +62,7 @@ namespace GP2.Controllers
             HttpContext.Session.Remove("time");
 
             //This gets a list of every record from DB:
-            var record = repo.Appointments.OrderByDescending(i => i.Date).ToList();
+            var record = repo.Response.OrderByDescending(i => i.Date).ToList();
 
             return View(record);
         }
@@ -123,7 +124,7 @@ namespace GP2.Controllers
             {
                 r.Date = HttpContext.Session.GetString("date");
                 
-                if (r.GroupName != "" && (r.GroupSize > 0 && r.GroupSize < 16) && r.Email !="")
+                if (r.Name != "" && (r.Size > 0 && r.Size < 16) && r.Email !="")
                 {
                     ModelState.Clear();
                 }
@@ -156,12 +157,12 @@ namespace GP2.Controllers
         public IActionResult Delete(int aptid)
         {
             //Matching the DB with the id 
-            var apt = repo.Appoinements.Single(i => i.AppointmentId == aptid);
+            var apt = repo.Response.Single(i => i.AppointmentId == aptid);
 
-            repo.Appointments.Remove(apt);
+            repo.Response.Remove(apt);
             repo.SaveChanges();
 
-            var list = repo.Appointments.ToList();
+            var list = repo.Response.ToList();
 
             return RedirectToAction("Appointments", list);
         }
@@ -173,7 +174,7 @@ namespace GP2.Controllers
         {
             ViewBag.New = false;
 
-            var apt = repo.Appointments.Single(i => i.AppointmentId == aptid);
+            var apt = repo.Response.Single(i => i.AppointmentId == aptid);
 
             ViewBag.currentDate = apt.Date;
             ViewBag.AppTime = apt.Time;
@@ -192,7 +193,7 @@ namespace GP2.Controllers
                 r.Time = HttpContext.Session.GetString("time");
             }
 
-            if (r.GroupName != "" && (r.GroupSize > 0 && r.GroupSize < 16) && r.Email != "")
+            if (r.Name != "" && (r.Size > 0 && r.Size < 16) && r.Email != "")
             {
                 ModelState.Clear();
             }
