@@ -31,8 +31,8 @@
                         <td>@i.Email</td>
                         <td>@i.PhoneNumber</td>
 
-                @if (Int32.Parse(i.Time) < 13 )
-                    {
+                 @if (Int32.Parse(i.Time) < 13 )
+                  {
                        if (Int32.Parse(i.Time) == 12)
                         {
                                 <td>@i.Time PM</td>
@@ -40,18 +40,23 @@
                         else
                         {
                                 <td>@i.Time AM</td>
-                    }
-                 }
-                 else
-                 {
+                        }
+                  }
+                  else
+                  {
                       <td>@((Int32.Parse(i.Time) - 12).ToString()) PM</td>
-                    }
+                  }
                         <td><a class = "btn btn-primary" asp-controller="Home" asp-action="Edit" asp-route-aptid="@i.AppointmentId">Edit</a></td>
                         <td><a class = "btn btn-primary" asp-controller="Home" asp-action="Delete" asp-route-aptid="@i.AppointmentId">Delete</a></td>
                     </tr>
-                }
+                 }
              }
-
+            else
+            {
+                <tr>
+                    <td>No Appointment!</td>
+                </tr>
+            }
 
         </tbody>
 
