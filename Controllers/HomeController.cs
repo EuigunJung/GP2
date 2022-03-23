@@ -182,7 +182,7 @@ namespace GP2.Controllers
 
             HttpContext.Session.SetString("date", apt.Date);
             HttpContext.Session.SetString("time", apt.Time);
-            return View("Form", apt);
+            return View("EditForm", apt);
         }
 
         [HttpPost]

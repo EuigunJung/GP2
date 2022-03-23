@@ -9,36 +9,30 @@
 
 <div>
     <form method="post">
-        @foreach (var i in Model)
-        {
-            <label asp-for="Date">Date</label>
-            <input asp-for="Date" value="@ViewBag.CurrentDate" /><br />
-            <label asp-for="Time">Time</label>
-            <input asp-for="Time" value="@ViewBag.scheduledTime" /><br /><br />
+        <label asp-for="Date">Date</label>
+        <input asp-for="Date" value="@ViewBag.CurrentDate" /><br />
+        <label asp-for="Time">Time</label>
+        <input asp-for="Time" value="@ViewBag.scheduledTime" /><br /><br />
 
-            <label asp-for="Name">Name of Group:</label>
-            <input asp-for="Name" /><br /><br />
+        <label asp-for="Name">Name of Group:</label>
+        <input asp-for="Name" /><br /><br />
 
-            <label asp-for="Size">Size of Group (1-15):</label>
-            <input asp-for="Size" /><br /><br />
+        <label asp-for="Size">Size of Group (1-15):</label>
+        <input asp-for="Size" /><br /><br />
 
-            <label asp-for="Email"> Email (example@example.com):</label>
-            <input asp-for="Email" /><br /><br />
+        <label asp-for="Email"> Email (example@example.com):</label>
+        <input asp-for="Email" /><br /><br />
 
-            <label asp-for="PhoneNumber">Phone Number (000-000-0000):</label>
-            <input asp-for="PhoneNumber" /><br /><br />
-        }
-
-
+        <label asp-for="PhoneNumber">Phone Number (000-000-0000):</label>
+        <input asp-for="PhoneNumber" /><br /><br />
 
         <div asp-validation-summary="All"></div>
 
-
         <button type="submit">Submit Appointment</button>
 
-        @if (ViewBag.New == false)
+        @*@if (ViewBag.New == false)
         {
             <input type="hidden" asp-for="AppointmentId" />
-        }
+        }*@
     </form>
 </div>
