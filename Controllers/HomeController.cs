@@ -143,7 +143,7 @@ namespace GP2.Controllers
                 HttpContext.Session.Remove("date");
                 HttpContext.Session.Remove("time");
 
-                return RedirectToAction("SignUp");
+                return RedirectToAction("Index");
 
             }
             //When the modelstate is not valid;
