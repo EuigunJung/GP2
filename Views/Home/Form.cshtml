@@ -26,14 +26,16 @@
 
         <div asp-validation-summary="All"></div>
 
-        <input type="hidden" asp-for="Date" disabled value="@ViewBag.CurrentDate" />
-        <input type="hidden" asp-for="Time" disabled value="@ViewBag.scheduleTime" />
+        <label asp-for="Date">Date</label>
+        <input asp-for="Date" disabled value="@ViewBag.CurrentDate" /><br />
+        <label asp-for="Time">Time</label>
+        <input asp-for="Time" disabled value="@ViewBag.scheduleTime" /><br />
 
         <button type="submit">Submit Appointment</button>
 
         @if (ViewBag.New == false)
-            {
-                <input type="hidden" asp-for="AppointmentId" />
-            }
+        {
+            <input type="hidden" asp-for="AppointmentId" />
+        }
     </form>
 </div>
