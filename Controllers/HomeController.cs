@@ -137,18 +137,18 @@ namespace GP2.Controllers
 
                 //Clearing the values 
                 ViewBag.CurrentDate = "";
-                ViewBag.scheduleTime = "";
+                ViewBag.scheduledTime = "";
 
                 //This removes the key-value pairs, date & time in session:
                 HttpContext.Session.Remove("date");
                 HttpContext.Session.Remove("time");
 
-                return RedirectToAction("SignUp");
+                return RedirectToAction("Index");
 
             }
             //When the modelstate is not valid;
             ViewBag.CurrentDate = HttpContext.Session.GetString("date");
-            ViewBag.scheduleTime = r.Time;
+            ViewBag.scheduledTime = r.Time;
             r.Date = HttpContext.Session.GetString("date");
             return View(r);
         }
@@ -178,7 +178,7 @@ namespace GP2.Controllers
             var apt = repo.Response.Single(i => i.AppointmentId == aptid);
 
             ViewBag.CurrentDate = apt.Date;
-            ViewBag.scheduleTime = apt.Time;
+            ViewBag.scheduledTime = apt.Time;
 
             HttpContext.Session.SetString("date", apt.Date);
             HttpContext.Session.SetString("time", apt.Time);
@@ -205,7 +205,7 @@ namespace GP2.Controllers
                 repo.SaveChanges();
 
                 ViewBag.CurrentDate = "";
-                ViewBag.scheduleTime = "";
+                ViewBag.scheduledTime = "";
 
                 HttpContext.Session.Remove("date");
                 HttpContext.Session.Remove("time");
@@ -217,7 +217,7 @@ namespace GP2.Controllers
 
             ViewBag.CurrentDate = HttpContext.Session.GetString("date");
 
-            ViewBag.scheduleTime = r.Time;
+            ViewBag.scheduledTime = r.Time;
 
             r.Date = HttpContext.Session.GetString("date");
 
