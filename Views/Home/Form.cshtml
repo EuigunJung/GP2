@@ -10,8 +10,6 @@
 <div>
     <form method="post">
 
-        <input type="hidden" asp-for="Date" disabled value="@ViewBag.currentDate" />
-        <input type="hidden" asp-for="Time" disabled value="@ViewBag.currentTime" />
 
 
         <label asp-for="Name">Name of Group:</label>
@@ -27,9 +25,15 @@
         <input asp-for="PhoneNumber" /><br /><br />
 
         <div asp-validation-summary="All"></div>
+
+        <input type="hidden" asp-for="Date" disabled value="@ViewBag.CurrentDate" />
+        <input type="hidden" asp-for="Time" disabled value="@ViewBag.scheduleTime" />
+
         <button type="submit">Submit Appointment</button>
 
-        <button class="btn btn-primary" type="submit">Submit</button>
-        <div asp-validation-summary = "All;"></div>
+        @if (ViewBag.New == false)
+            {
+                <input type="hidden" asp-for="AppointmentId" />
+            }
     </form>
 </div>

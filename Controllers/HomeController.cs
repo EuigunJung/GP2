@@ -82,10 +82,10 @@ namespace GP2.Controllers
             ViewBag.CurrentDate = previous;
 
             //Redirecting to the SignUp page with previous Date 
-            return RedirectToAction("SignUp", new { currentTime = previous });
+            return RedirectToAction("SignUp", new { CurrentDate = previous });
         }
 
-        public IActionResult NextDate(string currentDate)
+        public IActionResult NextDate(string CurrentDate)
         {
             //This removes the key-value pairs, date & time in session:
             HttpContext.Session.Remove("date");
@@ -93,12 +93,12 @@ namespace GP2.Controllers
 
             //This is the day formatting:
             string[] dateformat = { "MM/dd/yyyy" };
-            DateTime currentTime = DateTime.ParseExact(currentDate, dateformat, System.Globalization.CultureInfo.InvariantCulture);
+            DateTime currentTime = DateTime.ParseExact(CurrentDate, dateformat, System.Globalization.CultureInfo.InvariantCulture);
             DateTime nextDate = currentTime.AddDays(1);
             string next = nextDate.ToString("MM/dd/yyyy");
 
             ViewBag.CurrentDate = next;
-            return RedirectToAction("SignUp", new { currentTime = next });
+            return RedirectToAction("SignUp", new { CurrentDate = next });
         }
 
         [HttpGet]

@@ -15,10 +15,10 @@
         }
     else
        {
-        <a class="btn btn-warning" asp-controller="Home" asp-action="PreviousDate" asp-route-currenDate="@ViewBag.currentDate">Previous</a>
+        <a class="btn btn-warning" asp-controller="Home" asp-action="PreviousDate" asp-route-CurrentDate="@ViewBag.CurrentDate">Previous</a>
        }
-    <button class="btn btn-primary">@ViewBag.currentDate</button>
-    <a class="btn btn-danger" asp-controller="Home" asp-action="NextDate" asp-route-currentDate="@ViewBag.currnetDate">Next</a>
+    <button class="btn btn-primary">@ViewBag.CurrentDate</button>
+    <a class="btn btn-danger" asp-controller="Home" asp-action="NextDate" asp-route-CurrentDate="@ViewBag.CurrentDate">Next</a>
 </div>
 
 <h2>Reserve your spot</h2>
@@ -32,7 +32,7 @@
         }
         else
         {
-            <a class="btn btn-primary" asp-action="Form" asp-route-currentDate="@ViewBag.currentDate" asp-route-time="8"> 8 AM </a>
+            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="8"> 8 AM </a>
         }
         @if (Model.Any(i => i.Time == "9"))
         {
@@ -40,7 +40,7 @@
         }
         else
         {
-            <a class="btn btn-primary" asp-action="Form" asp-route-currentDate="@ViewBag.currentDate" asp-route-time="9"> 9 AM </a>
+            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="9"> 9 AM </a>
         }
         @if (Model.Any(i => i.Time == "10"))
         {
@@ -48,7 +48,7 @@
         }
         else
         {
-            <a class="btn btn-primary" asp-action="Form" asp-route-currentDate="@ViewBag.currentDate" asp-route-time="10"> 10 AM </a>
+            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="10"> 10 AM </a>
         }
         @if (Model.Any(i => i.Time == "11"))
         {
@@ -56,7 +56,7 @@
         }
         else
         {
-            <a class="btn btn-primary" asp-action="Form" asp-route-currentDate="@ViewBag.currentDate" asp-route-time="11"> 11 AM </a>
+            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="11"> 11 AM </a>
         }
         @if (Model.Any(i => i.Time == "12"))
         {
@@ -64,7 +64,7 @@
         }
         else
         {
-            <a class="btn btn-primary" asp-action="Form" asp-route-currentDate="@ViewBag.currentDate" asp-route-time="12"> 12 PM </a>
+            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="12"> 12 PM </a>
         }
         @if (Model.Any(i => i.Time == "13"))
         {
@@ -72,7 +72,7 @@
         }
         else
         {
-            <a class="btn btn-primary" asp-action="Form" asp-route-currentDate="@ViewBag.currentDate" asp-route-time="13"> 1 PM </a>
+            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="13"> 1 PM </a>
         }
         @if (Model.Any(i => i.Time == "14"))
         {
@@ -80,7 +80,7 @@
         }
         else
         {
-            <a class="btn btn-primary" asp-action="Form" asp-route-currentDate="@ViewBag.currentDate" asp-route-time="14"> 2 PM </a>
+            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="14"> 2 PM </a>
         }
         @if (Model.Any(i => i.Time == "15"))
         {
@@ -88,7 +88,7 @@
         }
         else
         {
-            <a class="btn btn-primary" asp-action="Form" asp-route-currentDate="@ViewBag.currentDate" asp-route-time="15"> 3 PM </a>
+            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="15"> 3 PM </a>
         }
         @if (Model.Any(i => i.Time == "16"))
         {
@@ -96,7 +96,7 @@
         }
         else
         {
-            <a class="btn btn-primary" asp-action="Form" asp-route-currentDate="@ViewBag.currentDate" asp-route-time="16"> 4 PM </a>
+            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="16"> 4 PM </a>
         }
         @if (Model.Any(i => i.Time == "17"))
         {
@@ -104,7 +104,7 @@
         }
         else
         {
-            <a class="btn btn-primary" asp-action="Form" asp-route-currentDate="@ViewBag.currentDate" asp-route-time="17"> 5 PM </a>
+            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="17"> 5 PM </a>
         }
         @if (Model.Any(i => i.Time == "18"))
         {
@@ -112,7 +112,7 @@
         }
         else
         {
-            <a class="btn btn-primary" asp-action="Form" asp-route-currentDate="@ViewBag.currentDate" asp-route-time="18"> 6 PM </a>
+            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="18"> 6 PM </a>
         }
         @if (Model.Any(i => i.Time == "19"))
         {
@@ -120,7 +120,7 @@
         }
         else
         {
-            <a class="btn btn-primary" asp-action="Form" asp-route-currentDate="@ViewBag.currentDate" asp-route-time="19"> 7 PM </a>
+            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="19"> 7 PM </a>
         }
         @if (Model.Any(i => i.Time == "20"))
         {
@@ -128,24 +128,24 @@
         }
         else
         {
-            <a class="btn btn-primary" asp-action="Form" asp-route-currentDate="@ViewBag.currentDate" asp-route-time="20"> 8 PM </a>
+            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="20"> 8 PM </a>
         }
     }
     else
     {
-        <a class="btn primary" asp-action="Form" asp-route-curDate="@ViewBag.currentDate" asp-route-time="8"> 8 AM </a>
-        <a class="btn primary" asp-action="Form" asp-route-curDate="@ViewBag.currentDate" asp-route-time="9"> 9 AM </a>
-        <a class="btn primary" asp-action="Form" asp-route-curDate="@ViewBag.currentDate" asp-route-time="10"> 10 AM </a>
-        <a class="btn primary" asp-action="Form" asp-route-curDate="@ViewBag.currentDate" asp-route-time="11"> 11 AM </a>
-        <a class="btn primary" asp-action="Form" asp-route-curDate="@ViewBag.currentDate" asp-route-time="12"> 12 PM </a>
-        <a class="btn primary" asp-action="Form" asp-route-curDate="@ViewBag.currentDate" asp-route-time="13"> 1 PM </a>
-        <a class="btn primary" asp-action="Form" asp-route-curDate="@ViewBag.currentDate" asp-route-time="14"> 2 PM </a>
-        <a class="btn primary" asp-action="Form" asp-route-curDate="@ViewBag.currentDate" asp-route-time="15"> 3 PM </a>
-        <a class="btn primary" asp-action="Form" asp-route-curDate="@ViewBag.currentDate" asp-route-time="16"> 4 PM </a>
-        <a class="btn primary" asp-action="Form" asp-route-curDate="@ViewBag.currentDate" asp-route-time="17"> 5 PM </a>
-        <a class="btn primary" asp-action="Form" asp-route-curDate="@ViewBag.currentDate" asp-route-time="18"> 6 PM </a>
-        <a class="btn primary" asp-action="Form" asp-route-curDate="@ViewBag.currentDate" asp-route-time="19"> 7 PM </a>
-        <a class="btn primary" asp-action="Form" asp-route-curDate="@ViewBag.currentDate" asp-route-time="20"> 8 PM </a>
+        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="8"> 8 AM </a>
+        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="9"> 9 AM </a>
+        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="10"> 10 AM </a>
+        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="11"> 11 AM </a>
+        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="12"> 12 PM </a>
+        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="13"> 1 PM </a>
+        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="14"> 2 PM </a>
+        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="15"> 3 PM </a>
+        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="16"> 4 PM </a>
+        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="17"> 5 PM </a>
+        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="18"> 6 PM </a>
+        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="19"> 7 PM </a>
+        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-scheduleTime="20"> 8 PM </a>
     }
 
 </div>
