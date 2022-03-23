@@ -15,12 +15,14 @@ namespace GP2.Models
         [Required(ErrorMessage = " Please enter a valid group name.")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = " Please enter a valid email address.")]
-        public string Email { get; set; }
-        
         [Required]
         [Range(1, 15, ErrorMessage = "Do not enter more than 15")]
         public int Size { get; set; }
+
+        [Required(ErrorMessage = " Please enter a valid email address.")]
+        public string Email { get; set; }
+        
+      
 
         public string PhoneNumber { get; set; }
    
