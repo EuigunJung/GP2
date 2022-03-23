@@ -26,7 +26,7 @@ namespace GP2.Controllers
         }
 
         //Sign Up 
-        public IActionResult SignUp(string currentDate)
+        public IActionResult SignUp(string currentDate , string time)
         {
             //This removes the key-value pairs, date & time in session:
             HttpContext.Session.Remove("date");
@@ -146,10 +146,10 @@ namespace GP2.Controllers
                 return RedirectToAction("Index");
 
             }
-            //When the modelstate is not valid;
-            ViewBag.CurrentDate = HttpContext.Session.GetString("date");
-            ViewBag.scheduledTime = r.Time;
-            r.Date = HttpContext.Session.GetString("date");
+            ////When the modelstate is not valid;
+            //ViewBag.CurrentDate = HttpContext.Session.GetString("date");
+            //ViewBag.scheduledTime = r.Time;
+            //r.Date = HttpContext.Session.GetString("date");
             return View(r);
         }
 
