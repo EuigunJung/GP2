@@ -10,9 +10,15 @@ h1 {
     text-align: center;
     color: black;
     font-family: fantasy;
-    font-size: 26px;
+    font-size: 30px;
 }
 
+h2 {
+    text-align: center;
+    color: darkolivegreen;
+    font-family: fantasy;
+    font-size: 26px;
+}
 p {
     color: olivedrab;
     font-family: fantasy;
@@ -30,7 +36,24 @@ li {
 }
 /* Provide sufficient contrast against white background */
 a {
-    color: #0366d6;
+    color: darkolivegreen;
+    font-family: fantasy;
+    font-size: 16px;
+    margin: 25px;
+}
+
+td {
+    color: yellowgreen;
+    font-family: fantasy;
+    font-size: 16px;
+    margin: 25px;
+}
+
+label {
+    color: mediumseagreen;
+    font-family: fantasy;
+    font-size: 16px;
+    margin: 25px;
 }
 
 .btn-primary {
