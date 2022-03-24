@@ -51,7 +51,6 @@ namespace GP2
             app.UseSession();
             app.UseStaticFiles();
             app.UseRouting();
-            app.UseAuthorization();
 
 
             app.UseEndpoints(endpoints =>

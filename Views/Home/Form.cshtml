@@ -6,7 +6,9 @@
 <link href="~/css/site.css" rel="stylesheet" />
 <h1>@ViewData["Title"]</h1>
 <p>Fill out your temple tour!</p>
-
+@* We tried creating another view file to edit the time, but does not update the data. So we ended up letting users 
+    manually delete the apppointment and create a new one. However, the "Form.cshtml" does the CRUD function for everything but the time.*@
+<h4>* If you would like to change the appointment time, please delete the current schedule and create a new one!</h4>
 <div>
     <form method="post">
 
@@ -31,10 +33,5 @@
 
 
         <button type="submit">Submit Appointment</button>
-
-        @if (ViewBag.New == false)
-        {
-            <input type="hidden" asp-for="AppointmentId" />
-        }
     </form>
 </div>

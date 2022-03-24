@@ -8,6 +8,7 @@ namespace GP2.Models
 {
     public class AppointmentResponse
     {
+        //Adding model validation for the sign up form:
         [Key]
         [Required]
         public int AppointmentId { get; set; }
@@ -22,13 +23,10 @@ namespace GP2.Models
         [Required(ErrorMessage = " Please enter a valid email address.")]
         public string Email { get; set; }
         
-      
-
         public string PhoneNumber { get; set; }
-   
-        //[Required]
+
+        //Users can double check their selected time and date. 
         public string Date { get; set; }
-        //[Required]
         public string Time { get; set; }
 
     }

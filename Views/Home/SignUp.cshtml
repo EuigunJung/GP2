@@ -4,7 +4,9 @@
 
 @model List<AppointmentResponse>
 
-@* this loop allows to match up the taskid from the database and link it to the viewfile. When user wants to edit and delete it will direct to the right pages. *@
+@* We hard coded the time slots, routing with the viewbag (date & time). Users will be able to see the available slots.
+    If the slot is taken, the button will be disabled to click, preventing DB crash:*@
+
 <link href="~/css/site.css" rel="stylesheet" />
 <h1>Sign Up for a Tour!</h1>
 

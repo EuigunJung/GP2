@@ -3,8 +3,8 @@
 }
 
 @model List<AppointmentResponse>
-@* this loop allows to match up the taskid from the database and link it to the viewfile. When user wants to edit and delete it will direct to the right pages. *@
 
+@* Users can access to the current appointments in ascending order, and CRUD the data: *@
 <link href="~/css/site.css" rel="stylesheet" />
 <div class="container">
     <h1>View Appointments</h1>
@@ -31,6 +31,7 @@
                         <td>@i.Size</td>
                         <td>@i.Email</td>
                         <td>@i.PhoneNumber</td>
+                      @* By parsing the data into integer, users can increase the readabililty for time (instead of reading 20, it will be 8PM) *@
                  @if (Int32.Parse(i.Time) < 13 )
                   {
                        if (Int32.Parse(i.Time) == 12)
@@ -54,7 +55,7 @@
             else
             {
                 <tr>
-                    <td>No Appointment!</td>
+                    <td>No Appointments - Please sign up for the souls</td>
                 </tr>
             }
 

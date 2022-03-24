@@ -83,7 +83,7 @@ namespace GP2.Controllers
             return RedirectToAction("SignUp", new { CurrentDate = previous });
         }
 
-        //Very similar to PreviousDate function: 
+        //Very similar to PreviousDate function. (Extra Credit) However, the users can go more than 3 months worth of dalendar date data.
         public IActionResult NextDate(string CurrentDate)
         {
      
@@ -129,12 +129,13 @@ namespace GP2.Controllers
                     ModelState.Clear();
                 }
             }
+            //Add validated form to the DB and redirect to Index page: 
             if (ModelState.IsValid)
             {
                 repo.Add(r);
                 repo.SaveChanges();
 
-                //Clearing the values 
+                //Clearing the current values 
                 ViewBag.CurrentDate = "";
                 ViewBag.scheduledTime = "";
 
@@ -149,8 +150,7 @@ namespace GP2.Controllers
             return View(r);
         }
 
-        //Deleting the information from DB
-
+        //Deleting the information from DB -- Users can directly see the changes:
         public IActionResult Delete(int aptid)
         {
             //Matching the DB with the id 
@@ -171,8 +171,10 @@ namespace GP2.Controllers
         {
             ViewBag.New = false;
 
+            //Fetching existing information from AppointmentContext DB:
             var apt = repo.Response.Single(i => i.AppointmentId == aptid);
 
+            
             ViewBag.CurrentDate = apt.Date;
             ViewBag.scheduledTime = apt.Time;
 
@@ -190,11 +192,13 @@ namespace GP2.Controllers
                 r.Time = HttpContext.Session.GetString("time");
             }
 
+            //Validation conditions
             if (r.Name != "" && r.Email != "" && (r.Size > 0 && r.Size <= 15))
             {
                 ModelState.Clear();
             }
 
+            //Assigning viewbag values to the repo values (updating): 
             if (ModelState.IsValid)
             {
                 repo.Update(r);
@@ -215,7 +219,7 @@ namespace GP2.Controllers
             ViewBag.scheduledTime = r.Time;
 
             r.Date = HttpContext.Session.GetString("date");
-
+            
             return View("Form", r);
         }
     }
