@@ -26,7 +26,9 @@ namespace GP2.Models
 
         public string PhoneNumber { get; set; }
    
+        [Required]
         public string Date { get; set; }
+        [Required]
         public string Time { get; set; }
 
     }
