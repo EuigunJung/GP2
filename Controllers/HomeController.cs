@@ -13,33 +13,34 @@ namespace GP2.Controllers
     {
         private AppointmentContext repo { get; set; }
 
+        //Connecting to AppointmentContext DB 
         public HomeController(AppointmentContext temp)
         {
             repo = temp;
         }
+
+        //Index Page 
         public IActionResult Index()
         {
-            //This removes the key-value pairs, date & time in session:
-            HttpContext.Session.Remove("date");
-            HttpContext.Session.Remove("time");
+  
             return View();
         }
 
-        //Sign Up 
-        public IActionResult SignUp(string currentDate , string time)
+        //Sign Up Page  
+        public IActionResult SignUp(string currentDate)
         {
-            //This removes the key-value pairs, date & time in session:
-            HttpContext.Session.Remove("date");
-            HttpContext.Session.Remove("time");
-
+       
             //Set the date to today if the currentdate is null:
             if (currentDate == null)
             {
+                //This converts the DateTime to sting with today's date 
                 currentDate = DateTime.Now.ToString("MM/dd/yyyy");
             }
+
+            //Create a viewbag and store currentDate value to the viewbag.CurrnetDate
             ViewBag.CurrentDate = currentDate;
 
-            //This is the day formatting:
+            //This is the day formatting, makes it easier to put information to the DB as string:
             string[] dateformat = { "MM/dd/yyyy" };
             DateTime currentTime = DateTime.ParseExact(currentDate, dateformat, System.Globalization.CultureInfo.InvariantCulture);
 
@@ -55,23 +56,20 @@ namespace GP2.Controllers
             return View(responses);
         }
 
+        //Appointments page
         public IActionResult Appointments()
         {
-            //This removes the key-value pairs, date & time in session:
-            HttpContext.Session.Remove("date");
-            HttpContext.Session.Remove("time");
 
-            //This gets a list of every record from DB:
-            var responses = repo.Response.OrderByDescending(i => i.Date).ToList();
+            //This gets a list of every record from DB. Order by Ascending order so the users can see the date close to today:
+            var responses = repo.Response.OrderBy(i => i.Date).ToList();
 
             return View(responses);
         }
 
+        //When the button is pressed, set the date to previous date, by subtracting 1. Then, convert the datatypee to string. 
         public IActionResult PreviousDate(string CurrentDate)
         {
-            //This removes the key-value pairs, date & time in session:
-            HttpContext.Session.Remove("date");
-            HttpContext.Session.Remove("time");
+  
 
             //This is the day formatting:
             string[] dateformat = { "MM/dd/yyyy" };
@@ -85,12 +83,10 @@ namespace GP2.Controllers
             return RedirectToAction("SignUp", new { CurrentDate = previous });
         }
 
+        //Very similar to PreviousDate function: 
         public IActionResult NextDate(string CurrentDate)
         {
-            //This removes the key-value pairs, date & time in session:
-            HttpContext.Session.Remove("date");
-            HttpContext.Session.Remove("time");
-
+     
             //This is the day formatting:
             string[] dateformat = { "MM/dd/yyyy" };
             DateTime currentTime = DateTime.ParseExact(CurrentDate, dateformat, System.Globalization.CultureInfo.InvariantCulture);
@@ -101,12 +97,14 @@ namespace GP2.Controllers
             return RedirectToAction("SignUp", new { CurrentDate = next });
         }
 
+        //The actual signup form is redirected when the user selects a respective timeslot.  
         [HttpGet]
         public IActionResult Form(string currentDate, string time)
         {
             ViewBag.CurrentDate = currentDate;
             ViewBag.scheduledTime = time;
 
+            //This prevents from getting a null value and getting an error. 
             if (HttpContext.Session.GetString("date") == null)
             {
                 HttpContext.Session.SetString("date", currentDate);
@@ -118,13 +116,14 @@ namespace GP2.Controllers
             return View();
         }
 
+
         [HttpPost]
         public IActionResult Form (AppointmentResponse r)
         {
             if (r.Date == null)
             {
                 r.Date = HttpContext.Session.GetString("date");
-                
+                //Multiple conditions that validates AppointmentResponse.cs
                 if (r.Name != "" && r.Email != ""  && (r.Size > 0 && r.Size <= 15))
                 {
                     ModelState.Clear();
@@ -139,9 +138,6 @@ namespace GP2.Controllers
                 ViewBag.CurrentDate = "";
                 ViewBag.scheduledTime = "";
 
-                //This removes the key-value pairs, date & time in session:
-                HttpContext.Session.Remove("date");
-                HttpContext.Session.Remove("time");
 
                 return RedirectToAction("Index");
 
@@ -206,7 +202,6 @@ namespace GP2.Controllers
 
                 ViewBag.CurrentDate = "";
                 ViewBag.scheduledTime = "";
-
                 HttpContext.Session.Remove("date");
                 HttpContext.Session.Remove("time");
 
