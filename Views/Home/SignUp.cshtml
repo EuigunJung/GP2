@@ -3,151 +3,157 @@
 }
 
 @model List<AppointmentResponse>
+    @* We hard coded the time slots, routing with the viewbag (date & time). Users will be able to see the available slots.
+        If the slot is taken, the button will be disabled to click, preventing DB crash:*@
 
-@* We hard coded the time slots, routing with the viewbag (date & time). Users will be able to see the available slots.
-    If the slot is taken, the button will be disabled to click, preventing DB crash:*@
 
-<link href="~/css/site.css" rel="stylesheet" />
-<h1>Sign Up for a Tour!</h1>
 
-<div class="date">
-    @if (ViewBag.Disable)
-        {
-       <a class="btn btn-primary disabled"> Previous </a>
-        }
-    else
-       {
-        <a class="btn btn-warning" asp-controller="Home" asp-action="PreviousDate" asp-route-CurrentDate="@ViewBag.CurrentDate">Previous</a>
-       }
-    <button class="btn btn-primary">@ViewBag.CurrentDate</button>
-    <a class="btn btn-danger" asp-controller="Home" asp-action="NextDate" asp-route-CurrentDate="@ViewBag.CurrentDate">Next</a>
-</div>
+    <link href="~/css/site.css" rel="stylesheet" />
+    <h1>Sign Up for a Tour!</h1>
+    <br />
+    <h4>If you would like to go further date, go the the URL box and change the numbers as (MM/DD/YYYY) form: </h4>
+    <h4> /Home/SignUp?CurrentDate=04%2F01%2F2022 -> 04 01 2022 = April 1st 2022 </h4>
+    <h4> /Home/SignUp?CurrentDate=07%2F20%2F2022 -> 07 20 2022 = July 20th 2022 </h4>
 
-<h2>Reserve your spot</h2>
- 
-<div>
-    @if (Model?.Count() > 0)
-    {
-        @if (Model.Any(i => i.Time == "8"))
-        {
-            <a class="btn btn-outline-secondary" disabled> 8 AM </a>
-        }
-        else
-        {
-            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="8"> 8 AM </a>
-        }
-        @if (Model.Any(i => i.Time == "9"))
-        {
-            <a class="btn btn-outline-secondary" disabled> 9 AM </a>
-        }
-        else
-        {
-            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="9"> 9 AM </a>
-        }
-        @if (Model.Any(i => i.Time == "10"))
-        {
-            <a class="btn btn-outline-secondary" disabled> 10 AM </a>
-        }
-        else
-        {
-            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="10"> 10 AM </a>
-        }
-        @if (Model.Any(i => i.Time == "11"))
-        {
-            <a class="btn btn-outline-secondary" disabled> 11 AM </a>
-        }
-        else
-        {
-            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="11"> 11 AM </a>
-        }
-        @if (Model.Any(i => i.Time == "12"))
-        {
-            <a class="btn btn-outline-secondary" disabled> 12 PM </a>
-        }
-        else
-        {
-            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="12"> 12 PM </a>
-        }
-        @if (Model.Any(i => i.Time == "13"))
-        {
-            <a class="btn btn-outline-secondary" disabled> 1 PM </a>
-        }
-        else
-        {
-            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="13"> 1 PM </a>
-        }
-        @if (Model.Any(i => i.Time == "14"))
-        {
-            <a class="btn btn-outline-secondary" disabled> 2 PM </a>
-        }
-        else
-        {
-            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="14"> 2 PM </a>
-        }
-        @if (Model.Any(i => i.Time == "15"))
-        {
-            <a class="btn btn-outline-secondary" disabled> 3 PM </a>
-        }
-        else
-        {
-            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="15"> 3 PM </a>
-        }
-        @if (Model.Any(i => i.Time == "16"))
-        {
-            <a class="btn btn-outline-secondary" disabled> 4 PM </a>
-        }
-        else
-        {
-            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="16"> 4 PM </a>
-        }
-        @if (Model.Any(i => i.Time == "17"))
-        {
-            <a class="btn btn-outline-secondary" disabled> 5 PM </a>
-        }
-        else
-        {
-            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="17"> 5 PM </a>
-        }
-        @if (Model.Any(i => i.Time == "18"))
-        {
-            <a class="btn btn-outline-secondary" disabled> 6 PM </a>
-        }
-        else
-        {
-            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="18"> 6 PM </a>
-        }
-        @if (Model.Any(i => i.Time == "19"))
-        {
-            <a class="btn btn-outline-secondary" disabled> 7 PM </a>
-        }
-        else
-        {
-            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="19"> 7 PM </a>
-        }
-        @if (Model.Any(i => i.Time == "20"))
-        {
-            <a class="btn btn-outline-secondary" disabled> 8 PM </a>
-        }
-        else
-        {
-            <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="20"> 8 PM </a>
-        }
-    }
-    else
-    {
-        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="8"> 8 AM </a>
-        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="9"> 9 AM </a>
-        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="10"> 10 AM </a>
-        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="11"> 11 AM </a>
-        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="12"> 12 PM </a>
-        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="13"> 1 PM </a>
-        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="14"> 2 PM </a>
-        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="15"> 3 PM </a>
-        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="16"> 4 PM </a>
-        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="17"> 5 PM </a>
-        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="18"> 6 PM </a>
-        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="19"> 7 PM </a>
-        <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="20"> 8 PM </a>
-    }
 
-</div>
+    <div class="date">
+        @if (ViewBag.Disable)
+        {
+            <a class="btn btn-primary disabled"> Previous </a>
+        }
+        else
+        {
+            <a class="btn btn-warning" asp-controller="Home" asp-action="PreviousDate" asp-route-CurrentDate="@ViewBag.CurrentDate">Previous</a>
+        }
+        <button class="btn btn-primary">@ViewBag.CurrentDate</button>
+        <a class="btn btn-danger" asp-controller="Home" asp-action="NextDate" asp-route-CurrentDate="@ViewBag.CurrentDate">Next</a>
+    </div>
+
+    <h2>Reserve your spot</h2>
+
+    <div>
+        @if (Model?.Count() > 0)
+        {
+            @if (Model.Any(i => i.Time == "8"))
+            {
+                <a class="btn btn-outline-secondary" disabled> 8 AM </a>
+            }
+            else
+            {
+                <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="8"> 8 AM </a>
+            }
+            @if (Model.Any(i => i.Time == "9"))
+            {
+                <a class="btn btn-outline-secondary" disabled> 9 AM </a>
+            }
+            else
+            {
+                <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="9"> 9 AM </a>
+            }
+            @if (Model.Any(i => i.Time == "10"))
+            {
+                <a class="btn btn-outline-secondary" disabled> 10 AM </a>
+            }
+            else
+            {
+                <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="10"> 10 AM </a>
+            }
+            @if (Model.Any(i => i.Time == "11"))
+            {
+                <a class="btn btn-outline-secondary" disabled> 11 AM </a>
+            }
+            else
+            {
+                <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="11"> 11 AM </a>
+            }
+            @if (Model.Any(i => i.Time == "12"))
+            {
+                <a class="btn btn-outline-secondary" disabled> 12 PM </a>
+            }
+            else
+            {
+                <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="12"> 12 PM </a>
+            }
+            @if (Model.Any(i => i.Time == "13"))
+            {
+                <a class="btn btn-outline-secondary" disabled> 1 PM </a>
+            }
+            else
+            {
+                <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="13"> 1 PM </a>
+            }
+            @if (Model.Any(i => i.Time == "14"))
+            {
+                <a class="btn btn-outline-secondary" disabled> 2 PM </a>
+            }
+            else
+            {
+                <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="14"> 2 PM </a>
+            }
+            @if (Model.Any(i => i.Time == "15"))
+            {
+                <a class="btn btn-outline-secondary" disabled> 3 PM </a>
+            }
+            else
+            {
+                <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="15"> 3 PM </a>
+            }
+            @if (Model.Any(i => i.Time == "16"))
+            {
+                <a class="btn btn-outline-secondary" disabled> 4 PM </a>
+            }
+            else
+            {
+                <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="16"> 4 PM </a>
+            }
+            @if (Model.Any(i => i.Time == "17"))
+            {
+                <a class="btn btn-outline-secondary" disabled> 5 PM </a>
+            }
+            else
+            {
+                <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="17"> 5 PM </a>
+            }
+            @if (Model.Any(i => i.Time == "18"))
+            {
+                <a class="btn btn-outline-secondary" disabled> 6 PM </a>
+            }
+            else
+            {
+                <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="18"> 6 PM </a>
+            }
+            @if (Model.Any(i => i.Time == "19"))
+            {
+                <a class="btn btn-outline-secondary" disabled> 7 PM </a>
+            }
+            else
+            {
+                <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="19"> 7 PM </a>
+            }
+            @if (Model.Any(i => i.Time == "20"))
+            {
+                <a class="btn btn-outline-secondary" disabled> 8 PM </a>
+            }
+            else
+            {
+                <a class="btn btn-primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="20"> 8 PM </a>
+            }
+        }
+        else
+        {
+            <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="8"> 8 AM </a>
+            <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="9"> 9 AM </a>
+            <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="10"> 10 AM </a>
+            <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="11"> 11 AM </a>
+            <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="12"> 12 PM </a>
+            <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="13"> 1 PM </a>
+            <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="14"> 2 PM </a>
+            <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="15"> 3 PM </a>
+            <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="16"> 4 PM </a>
+            <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="17"> 5 PM </a>
+            <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="18"> 6 PM </a>
+            <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="19"> 7 PM </a>
+            <a class="btn primary" asp-action="Form" asp-route-CurrentDate="@ViewBag.CurrentDate" asp-route-time="20"> 8 PM </a>
+        }
+
+    </div>
