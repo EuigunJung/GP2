@@ -12,7 +12,25 @@
         <label asp-for="Date">Date</label>
         <input asp-for="Date" value="@ViewBag.CurrentDate" /><br />
         <label asp-for="Time">Time</label>
-        <input asp-for="Time" value="@ViewBag.scheduledTime" /><br /><br />
+        @*<input asp-for="Time" value="@ViewBag.scheduledTime" /><br /><br />*@
+    <select asp-for="Time">
+        <option>8 AM</option>
+        <option>9 AM</option>
+        <option>10 AM</option>
+        <option>11 AM</option>
+        <option>12 AM</option>
+        <option>1 PM</option>
+        <option>2 PM</option>
+        <option>3 PM</option>
+        <option>4 PM</option>
+        <option>5 PM</option>
+        <option>6 PM</option>
+        <option>7 PM</option>
+        <option>8 PM</option>
+    </select>
+
+
+
 
         <label asp-for="Name">Name of Group:</label>
         <input asp-for="Name" /><br /><br />
