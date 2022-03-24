@@ -146,10 +146,10 @@ namespace GP2.Controllers
                 return RedirectToAction("Index");
 
             }
-            ////When the modelstate is not valid;
-            //ViewBag.CurrentDate = HttpContext.Session.GetString("date");
-            //ViewBag.scheduledTime = r.Time;
-            //r.Date = HttpContext.Session.GetString("date");
+            //When the modelstate is not valid;
+            ViewBag.CurrentDate = HttpContext.Session.GetString("date");
+            ViewBag.scheduledTime = r.Time;
+            r.Date = HttpContext.Session.GetString("date");
             return View(r);
         }
 
@@ -182,7 +182,7 @@ namespace GP2.Controllers
 
             HttpContext.Session.SetString("date", apt.Date);
             HttpContext.Session.SetString("time", apt.Time);
-            return View("EditForm", apt);
+            return View("Form", apt);
         }
 
         [HttpPost]
@@ -221,7 +221,7 @@ namespace GP2.Controllers
 
             r.Date = HttpContext.Session.GetString("date");
 
-            return View("From", r);
+            return View("Form", r);
         }
     }
 }
